@@ -4,8 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "test": "./node_modules/.bin/mocha --compilers js:babel-core/register test/*_test.js",
+    "test:watch": "npm run test -- --watch"
   },
   "author": "Jason Strutz <j@jasonstrutz.com> (http://jasonstrutz.com)",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "babel": "^6.1.18",
+    "babel-core": "^6.1.19",
+    "chai": "^3.4.1",
+    "mocha": "^2.3.3"
+  },
+  "dependencies": {
+    "express": "^4.13.3",
+    "passport": "^0.3.2"
+  }
 }
