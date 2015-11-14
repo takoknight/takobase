@@ -22,6 +22,8 @@
     "express": "^4.13.3",
     "morgan": "^1.6.1",
     "passport": "^0.3.2",
+    "react": "^0.14.2",
+    "react-dom": "^0.14.2",
     "response-time": "^2.3.1"
   }
 }
