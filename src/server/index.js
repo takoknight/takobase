@@ -6,6 +6,9 @@ var bodyParser    = require('body-parser');
 var morgan        = require('morgan');
 var responseTime  = require('response-time');
 var compression   = require('compression');
+var passport      = require('passport');
+
+const SESSION_SECRET = process.env.SESSION_SECRET || (process.env.NODE_ENV !== 'production' ? null : 'devkey');
 
 app.use(morgan('dev'));
 app.use(compression());
@@ -14,7 +17,7 @@ app.use(responseTime());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(cookieSession());
+app.use(cookieSession({ keys: [SESSION_SECRET] }));
 app.use(passport.initialize());
 app.use(passport.session());
 
