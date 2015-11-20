@@ -1,11 +1,12 @@
 var express       = require('express');
 var app           = express();
+var bodyParser    = require('body-parser');
+var compression   = require('compression');
 var cookieParser  = require('cookie-parser');
 var cookieSession = require('cookie-session')
-var bodyParser    = require('body-parser');
+var helmet        = require('helmet');
 var morgan        = require('morgan');
 var responseTime  = require('response-time');
-var compression   = require('compression');
 var passport      = require('passport');
 
 const SESSION_SECRET = process.env.SESSION_SECRET || (process.env.NODE_ENV !== 'production' ? null : 'devkey');
@@ -13,6 +14,7 @@ const SESSION_SECRET = process.env.SESSION_SECRET || (process.env.NODE_ENV !== '
 app.use(morgan('dev'));
 app.use(compression());
 app.use(responseTime());
+app.use(helmet());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
