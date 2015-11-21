@@ -11,6 +11,9 @@ var passport      = require('passport');
 
 const SESSION_SECRET = process.env.SESSION_SECRET || (process.env.NODE_ENV !== 'production' ? null : 'devkey');
 
+if (!SESSION_SECRET)
+  throw Error('A SESSION_SECRET environment variable is required when running in production');
+
 app.use(morgan('dev'));
 app.use(compression());
 app.use(responseTime());
