@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "./node_modules/.bin/mocha --compilers js:babel-core/register test/*_test.js",
+    "test": "./node_modules/.bin/mocha --compilers js:babel-core/register --recursive",
     "test:watch": "npm run test -- --watch"
   },
   "author": "Jason Strutz <j@jasonstrutz.com> (http://jasonstrutz.com)",
@@ -23,6 +23,7 @@
     "cookie-session": "^1.2.0",
     "express": "^4.13.3",
     "helmet": "^0.14.0",
+    "isomorphic-fetch": "^2.2.0",
     "morgan": "^1.6.1",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",

@@ -9,7 +9,7 @@ var morgan        = require('morgan');
 var responseTime  = require('response-time');
 var passport      = require('passport');
 
-const SESSION_SECRET = process.env.SESSION_SECRET || (process.env.NODE_ENV !== 'production' ? null : 'devkey');
+const SESSION_SECRET = process.env.SESSION_SECRET || (process.env.NODE_ENV === 'production' ? null : 'devkey');
 
 if (!SESSION_SECRET)
   throw Error('A SESSION_SECRET environment variable is required when running in production');
@@ -26,9 +26,14 @@ app.use(cookieSession({ keys: [SESSION_SECRET] }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-// respond with "hello world" when a GET request is made to the homepage
 app.get('/', function(req, res) {
   res.send('hello world');
 });
 
-app.listen(process.env.PORT || 3000);
+module.exports = app;
+
+if (!module.parent) {
+  app.listen(process.env.PORT || 3000, function() {
+    console.log("Server listening on port " + app.get('port'));
+  });
+}
