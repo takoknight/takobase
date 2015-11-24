@@ -8,13 +8,14 @@ var helmet        = require('helmet');
 var morgan        = require('morgan');
 var responseTime  = require('response-time');
 var passport      = require('passport');
+var config        = require('config');
 
 const SESSION_SECRET = process.env.SESSION_SECRET || (process.env.NODE_ENV === 'production' ? null : 'devkey');
 
 if (!SESSION_SECRET)
   throw Error('A SESSION_SECRET environment variable is required when running in production');
 
-app.use(morgan('dev'));
+app.use(morgan(config.get('morgan.format')));
 app.use(compression());
 app.use(responseTime());
 app.use(helmet());
