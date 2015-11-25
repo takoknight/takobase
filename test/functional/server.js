@@ -22,4 +22,10 @@ describe('basic server functionality', function() {
       });
   });
 
+  it('should respond to a failed request with a 404', function() {
+    return fetch(this.baseUrl + '/missing')
+      .then(function(resp) {
+        assert.equal(resp.status, 404);
+      });
+  });
 });
